@@ -7,7 +7,7 @@ DIM = (605, 500)
 WIN = pygame.display.set_mode(DIM)
 pygame.display.set_caption("Sorting Visualiser")
 font = pygame.font.SysFont('Calibri', 14, bold=True)
-header_font = pygame.font.SysFont('Calibri', 30, bold=True)
+header_font = pygame.font.SysFont('Comic Sans', 40)
 
 BAR_WIDTH = 25
 INITX = 5
@@ -54,6 +54,9 @@ def main(win):
     run = True
     executing = False
     number_toggle = True
+    title = header_font.render('BUBBLE SORT VISUALISER.', 30, BLACK)
+    ops = 0
+    ops_text = header_font.render(f'Ω = {ops}', 30, BLACK)
 
     while run:
         pygame.time.delay(10)
@@ -62,9 +65,14 @@ def main(win):
             win.fill(WHITE)
             show(height, win, height_color, number_toggle)
             toggle_number(height, win)
+            win.blit(title, (20, 460))
+            win.blit(ops_text, (470, 460))
             pygame.display.update()
+
         else:
-            algorithms.BubbleSort(height, win, show, height_color, number_toggle, WHITE, BLACK, GREEN, RED)
+            ops = algorithms.BubbleSort(height, win, show, height_color, number_toggle, title, ops, header_font, WHITE, BLACK, GREEN, RED)
+            ops_text = header_font.render(f'Ω = {ops}', 30, BLACK)
+            win.blit(ops_text, (470, 460))
             executing = False
 
         for event in pygame.event.get():
