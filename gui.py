@@ -81,6 +81,16 @@ def main(win):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     executing = True
+                elif event.key == pygame.K_r and executing == False:
+                    height_init = gen(20)
+                    height = to_height(height_init)
+                    height_color = [BLACK for i in range(len(height))]
+                    run = True
+                    executing = False
+                    number_toggle = True
+                    title = header_font.render('BUBBLE SORT VISUALISER.', 30, BLACK)
+                    ops = 0
+                    ops_text = header_font.render(f'Ω = {ops}', 30, BLACK)
 
 if __name__ == "__main__":
     main(WIN)
